@@ -81,8 +81,8 @@ function renderShell(){
   +'<h1>The Egypt Odoo market</h1>'
   +'<div class="sub">Live public monitor of Odoo partners in Egypt, their referenced clients, and every listing change we detect.</div>'
   +'<div class="freshline">'
-  +'<span><span class="dotlive"></span>Directory checked <b>'+fdate(d.directoryCheckedAt)+' Cairo</b> ('+ago(d.directoryCheckedAt)+')</span>'
-  +'<span>Full profile scan <b>'+fdate(d.fullScanAt)+' Cairo</b></span>'
+  +'<span title="Times reflect the upstream monitor, not an independent scrape by this site"><span class="dotlive"></span>Upstream directory check <b>'+fdate(d.directoryCheckedAt)+' Cairo</b> ('+ago(d.directoryCheckedAt)+')</span>'
+  +'<span>Upstream full scan <b>'+fdate(d.fullScanAt)+' Cairo</b></span>'
   +'<span>Tracking since <b>'+esc(d.trackingStart)+'</b></span>'
   +'</div>'
   +'<nav class="nav">'+nav+'</nav>'
@@ -90,7 +90,7 @@ function renderShell(){
   +'<main><div class="wrap" id="main"></div></main>'
   +'<footer><div class="wrap footer">'
   +'<div>Source: <a href="'+SRC+'">public Odoo partner directory - Egypt</a>. Near-live public monitoring, not an Odoo real-time feed. Observations of listing changes are not evidence of acquisitions, contract losses or commercial transfers.</div>'
-  +'<div>Also published as an <a href="'+CANON+'">Instinct File</a> · <a href="'+SHEET+'">Underlying spreadsheet</a> (restricted) · <a href="https://github.com/Elhsn/odoo-egypt-market-monitor">Source mirror</a></div>'
+  +'<div>This GitHub Pages site auto-syncs from the original <a href="'+CANON+'">Instinct-hosted monitor</a> every 30 minutes; timestamps show the upstream monitor check times, not an independent scrape. Data also in the <a href="'+SHEET+'">view-only spreadsheet</a> · <a href="https://github.com/Elhsn/odoo-egypt-market-monitor">Source code</a></div>'
   +'</div></footer>';
   $('.nav').addEventListener('click',function(e){var a=e.target.closest('a');if(a){S.view=a.dataset.v;}});
 }
