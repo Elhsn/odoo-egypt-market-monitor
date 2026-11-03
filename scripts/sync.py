@@ -3,6 +3,8 @@
 already-published public dashboard build. No credentials or private sources."""
 import re, subprocess, sys, urllib.request, os, time, json, base64
 
+EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]+")
+
 CANONICAL = "https://files.instinct.com/dm6ngmf26sgh-odoo-egypt-market-monitor"
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 SITE = os.path.join(ROOT, "site")
@@ -66,6 +68,18 @@ def main():
             chart = None
             if m:
                 chart = get(host + "/" + m.group(1)[2:] + "?lease=" + lease, ifr)
+            # Sanitize: mask any email addresses embedded in public directory
+            # client names so the published dataset carries no contactable addresses.
+            def mask_emails(o):
+                if isinstance(o, dict):
+                    return {k: mask_emails(v) for k, v in o.items()}
+                if isinstance(o, list):
+                    return [mask_emails(v) for v in o]
+                if isinstance(o, str):
+                    return EMAIL_RE.sub("[email withheld]", o)
+                return o
+            d = mask_emails(d)
+            data = json.dumps(d, ensure_ascii=False)
             open(os.path.join(SITE, "data.json"), "w").write(data)
             if chart:
                 open(os.path.join(SITE, "chart.png"), "wb").write(chart)
