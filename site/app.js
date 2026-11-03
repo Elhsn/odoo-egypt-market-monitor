@@ -114,8 +114,6 @@ function vOverview(m){
   +'<div class="kpi"><div class="n">'+fmt(d.counts.sectors)+'</div><div class="l">Industries</div><div class="d">As labelled by Odoo</div></div>'
   +'<div class="kpi"><div class="n">'+fmt(experts)+'</div><div class="l">Certified experts</div><div class="d">Across listed partners</div></div>'
   +'</div>'
-  +'<div class="h2">Market map <small>Top partners by public client references</small></div>'
-  +'<div class="card imgcard"><img src="chart.png" alt="Market chart of top Odoo partners in Egypt by referenced clients"><div class="cap">Generated at each published snapshot from live listing counts.</div></div>'
   +'<div class="grid2" style="margin-top:12px">'
   +'<div class="card pad"><div class="h2" style="margin-top:0">Top 10 partners</div>'+hbars(top.map(function(p){return{label:p.name,value:p.listed_refs}}))+'</div>'
   +'<div class="card pad"><div class="h2" style="margin-top:0">Client references by sector</div>'+hbars(topS.map(function(s){return{label:s.label,value:s.value}}),560,26,'#132c3a')+'</div>'
